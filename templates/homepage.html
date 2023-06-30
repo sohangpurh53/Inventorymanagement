@@ -25,7 +25,7 @@
         <tbody>
             {% for products in product %}
      <tr>
-                <td><a href="{{ products.image.url }}"><img src="{{ products.image.url }}" alt=""></a></td>
+                <td><a target="_blank" href="{{ products.image.url }}"><img src="{{ products.image.url }}" alt=""></a></td>
                 <td>{{ products.name }}</td>
                 <td>{{ products.description }}</td>
                 <td><a class="edit" href="{% url 'edit_product' product_id=products.id %}">Edit</a></td>
