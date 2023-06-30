@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="/css/sale.css">
+{% extends 'base.html' %}
+
+{% block content %} 
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Add Sales</button>
+    </form>
+</div>
+
+{% endblock %}

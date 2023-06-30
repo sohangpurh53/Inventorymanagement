@@ -1,0 +1,46 @@
+
+<link rel="stylesheet" href="/css/singleproduct.css">
+{% extends 'base.html' %}
+
+{% block content %}
+   
+
+{% if messages %}
+{% for message in messages %}
+   <h4>{{message}}</h4> 
+{% endfor %}
+{% endif %}
+
+<body>
+  
+    <h3>Total Products</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+      
+           <tr>
+                <td><a href="{{ product.image.url }}"><img src="{{ product.image.url }}" alt=""></a></td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.description }}</td>
+                <td>{{ product.price }}</td>
+                
+            </tr>
+          
+        </tbody>
+    </table>
+
+
+    
+
+    
+
+</body>
+
+{% endblock %}

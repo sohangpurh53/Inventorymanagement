@@ -1,0 +1,121 @@
+
+<link rel="stylesheet" href="/css/homepage.css">
+{% extends 'base.html' %}
+
+{% block content %}
+   
+
+{% if messages %}
+{% for message in messages %}
+   <h4>{{message}}</h4> 
+{% endfor %}
+{% endif %}
+
+<body>
+  
+    <h3>Total Products</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for products in product %}
+     <tr>
+                <td><a href="{{ products.image.url }}"><img src="{{ products.image.url }}" alt=""></a></td>
+                <td>{{ products.name }}</td>
+                <td>{{ products.description }}</td>
+                <td><a class="edit" href="{% url 'edit_product' product_id=products.id %}">Edit</a></td>
+               <td><a class="delete" href="{% url 'delete_product' product_id=products.id %}">Delete</a></td>
+              
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <h3>Total Sales</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Image</th>
+                <th>Products</th>
+                <th>Quantity Sold</th>
+                <th>Price</th>
+                <th>Total Price</th>
+                <th>Sale Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in sales %}
+            <tr>
+               <td><img src="{{ sale.product.image }}" alt=""></td> 
+                <td>{{ sale.product }}</td>
+                <td>{{ sale.quantity }}</td>
+                <td>{{ sale.price }}</td>
+                <td>{{ sale.total }}</td>
+                <td>{{ sale.sale_date }}</td>
+                <td><a class="edit" href="{% url 'edit_sales' sale_id=sale.id %}">Edit</a></td>
+                <td><a class="delete" href="{% url 'delete_sale' sale_id=sale.id %}">Delete</a></td>
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>purchase</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Image</th>
+                <th>Products</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for purchase in purchases %}
+            <tr>
+                <td><img src="{{ purchase.product.image }}" alt=""></td>
+                <td>{{ purchase.product }}</td>
+                <td>{{ purchase.quantity }}</td>
+                <td>{{ purchase.price }}</td>
+                <td>{{ purchase.total }}</td>
+                <td><a class="edit" href="{% url 'edit_purchase' purchase_id=purchase.id %}">Edit</a></td>
+                <td><a class="delete" href="{% url 'delete_purchase' purchase_id=purchase.id %}">Delete</a></td>
+    
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if purchases %}
+    <h3>Stock</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Image</th>
+                <th>Products</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td><img src="{{stock.product.image}}" alt=""></td>
+                <td>{{ stock.product }}</td>
+                <td>{{ stock.quantity }}</td>
+    
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+ {% endif %}
+</body>
+
+{% endblock %}

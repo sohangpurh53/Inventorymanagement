@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="/css/product.css">
+{% extends 'base.html' %}
+
+{% block content %} 
+
+{% if messages %}
+{% for message in messages %}
+   <h2>{{message}}</h2> 
+{% endfor %}
+{% endif %}
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button>Create Product</button>
+    </form>
+</div>
+
+
+{% endblock %}
